@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-df(+#a5)&o+!+!_2edbdds)mha&g_wbn%qf4v)c@@kwr)zlujl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://medbot-4fay.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
