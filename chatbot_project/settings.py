@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-df(+#a5)&o+!+!_2edbdds)mha&g_wbn%qf4v)c@@kwr)zlujl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medbot-4fay.onrender.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -65,12 +65,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'whitenoise.middleware.WhiteNoiseMiddleware',
             ],
         },
     },
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WSGI_APPLICATION = 'chatbot_project.wsgi.application'
 
@@ -132,6 +130,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -147,12 +146,8 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Add this setting for production
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 

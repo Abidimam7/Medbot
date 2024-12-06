@@ -72,7 +72,7 @@ function typeBotResponse(response) {
         botTextElement.innerHTML += response.charAt(index++);
         chatOutput.scrollTop = chatOutput.scrollHeight;
         if (index >= response.length) clearInterval(typingInterval);
-    }, 50);
+    }, 20);
 }
 
 
