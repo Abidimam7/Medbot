@@ -74,18 +74,7 @@
         const form = document.querySelector('form');
         const passwordField = document.getElementById('password');
         const confirmPasswordField = document.getElementById('confirm_password');
-        const passwordStrength = document.getElementById('passwordStrength');
         const loadingSpinner = document.getElementById('loadingSpinner');
-
-        passwordField.addEventListener('input', () => {
-            const value = passwordField.value;
-            const regex = /^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            if (!regex.test(value)) {
-                passwordStrength.textContent = "Weak password: Include at least 8 characters, a number, and a symbol.";
-            } else {
-                passwordStrength.textContent = "Strong password.";
-            }
-        });
 
         form.addEventListener('submit', (e) => {
             if (passwordField.value !== confirmPasswordField.value) {
@@ -95,6 +84,7 @@
                 loadingSpinner.classList.remove('d-none');
             }
         });
+
     </script>
 </body>
 </html>
