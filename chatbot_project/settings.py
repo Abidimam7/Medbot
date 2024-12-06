@@ -9,18 +9,16 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load environment variables from .env file
-load_dotenv()
 
-# API key from .env
-API_KEY = os.getenv('API_KEY')
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-df(+#a5)&o+!+!_2edbdds)mha&g_wbn%qf4v)c@@kwr)zlujl'
@@ -28,9 +26,11 @@ SECRET_KEY = 'django-insecure-df(+#a5)&o+!+!_2edbdds)mha&g_wbn%qf4v)c@@kwr)zlujl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medbot-4fay.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
+
 
 # Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'chatbot_project.urls'
@@ -72,19 +72,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatbot_project.wsgi.application'
 
-# Database configuration
+
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Medbot',
-        'USER': 'abid',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',  # Or the IP address of your database server
-        'PORT': '5432',  # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Medbot',
+#         'USER': 'abid',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',  # Or the IP address of your database server
+#         'PORT': '5432',  # Default PostgreSQL port
+#     }
+# }
+
 
 # Password validation
+# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,20 +112,40 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Static files configuration
-STATIC_URL = '/static/'
 
-# Use WhiteNoise to serve static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Internationalization
+# https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-# Media configuration
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+STATIC_URL = 'static/'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# chatbot_project/settings.py
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Now you can access the API_KEY in your settings
+API_KEY = os.getenv('API_KEY')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Internationalization
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Define the directory for generated images
+MEDIA_URL = '/generated_images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'generated_images')
