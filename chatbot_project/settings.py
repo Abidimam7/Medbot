@@ -65,10 +65,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'whitenoise.middleware.WhiteNoiseMiddleware',
             ],
         },
     },
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WSGI_APPLICATION = 'chatbot_project.wsgi.application'
 
@@ -145,7 +147,12 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Define the directory for generated images
-MEDIA_URL = '/generated_images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'generated_images')
+# Add this setting for production
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
